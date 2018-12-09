@@ -16,32 +16,44 @@ export default class Helper extends React.Component {
           <table className="table-outer table-helper">
             <tbody>
               <tr>
-                <td className="alerts-title">Last block:</td>
-                <td className="table-value">{this.props.data.blockNum}</td>
+                <th> CDP Primary Tracker </th>
+                <th> Key Metrics </th>
+              </tr>
+              <td className="alerts-title">CDP ID </td>
+              <td className="alert-value">{this.props.data.cupId}</td>
+              <tr>
+                <td className="alerts-title">Liquidation Ratio </td>
+                <td className="alerts-value">{this.props.data.liquidationRatio}</td>
               </tr>
               <tr>
-                <td className="alerts-title">Avg Wait Time (min)</td>
-                <td className="table-value">{this.props.data.avgWait}</td>
+                <td className="alerts-title">Liquidation Price </td>
+                <td className="alerts-value">{this.props.data.liqudationPrice}</td>
+              </tr>
+              <tr>
+                <td className="alerts-title">Current Price of Eth  </td>
+                <td className="alerts-value">{this.props.data.priceOfEth}</td>
               </tr>
             </tbody>
           </table>
           <table className="table-outer table-helper">
             <tbody>
               <tr>
-                <th>Speed</th>
-                <th>Gas Price (gwei)</th>
+                <th>CDP Secondary Tracker </th>
+                <th>Key Metrics</th>
+              </tr>
+              <td className="alerts-title">CDP ID </td>
+              <td className="alert-value">{this.props.data.cupId}</td>
+              <tr>
+                <td className="alerts-title">Liquidation Ratio </td>
+                <td className="alerts-value">{this.props.data.liquidationRatio}</td>
               </tr>
               <tr>
-                <td className="alerts-title">SafeLow (&gt;30m)</td>
-                <td className="table-value">{this.props.data.safeLow}</td>
+                <td className="alerts-title">Liquidation Price  </td>
+                <td className="alerts-value">{this.props.data.liqudationPrice}</td>
               </tr>
               <tr>
-                <td className="alerts-title">Standard (&gt;5m)</td>
-                <td className="table-value">{this.props.data.standard}</td>
-              </tr>
-              <tr>
-                <td className="alerts-title">Fast (&gt;2m)</td>
-                <td className="table-value">{this.props.data.fast}</td>
+                <td className="alerts-title">Current Price of Eth  </td>
+                <td className="alerts-value">{this.props.data.priceOfEth}</td>
               </tr>
             </tbody>
           </table>
