@@ -6,25 +6,14 @@ import fetch from 'isomorphic-fetch';
 import Work from './Components/Work'
 import Helper from './Components/Helper'
 import Alerts from './Components/Alerts'
-import ApolloClient from "apollo-boost";
-import gql from "graphql-tag";
-const client = new ApolloClient({
-  uri: "http://graphql.makerdao.com/v1"
-});
-var data = {};
-
-
-
-
-
-
 
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      data: {}
+      data: {},
+    value: localStorage.getItem("CupId") | ''
     }
   }
   componentDidMount(){
@@ -32,23 +21,34 @@ class App extends Component {
       return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(window.location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
     }
     this.setState({mode: getURLParameter('mode')})
-    this.fetchData()
+    if (this.state.value != ""){
+      this.fetchData();
+    }
+  }
+  handleChange=(event) => {
+    this.setState({value: event.target.value});
+    localStorage.setItem("CupId", event.target.value);
   }
   fetchData = () => {
-    fetch('https://api.oasisdex.com/v1/pairs/',{
+
+    fetch(`http://localhost:9001/cups/${this.state.value}`,{
       method: "GET"
     })
     .then((response) => response.json())
     .then((response) => {
-      response.standard = +(response.average / 10).toFixed(1);
-      response.safeLow = +(response.safeLow / 10).toFixed(1);
-      response.fast = +(response.fast / 10).toFixed(1);
+      let cup = response.getCup;
+      response.liquidationRatio = Math.round(cup.ratio*100)/100;
+      response.safeLow = cup.pip;
+      response.fast = null;
       this.setState({data: response});
     });
   }
   render() {
     return (
+
       <div className="App">
+       <input type="number" value={this.state.value} onChange={this.handleChange} />
+      <button onClick={this.fetchData}>Get Cup Info</button>
         {this.state.mode=='work'&&<Work data={this.state.data} />}
         {this.state.mode=='helper'&&<Helper data={this.state.data} />}
         {this.state.mode=='alerts'&&<Alerts data={this.state.data} />}
