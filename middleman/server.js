@@ -2,9 +2,6 @@ const app = require('express')();
 const request = require('request');
 const { request: gqlrequest } = require('graphql-request')
 
-function intervalFunc() {
-  console.log('Cant stop me now!');
-
 app.get('/prices', (req, resp) => {
   request('http://api.oasisdex.com/v1/prices/eth/dai', (err, res, body) => {
     resp.send(body);
@@ -17,6 +14,5 @@ app.get('/cups/:id', async (req, resp) => {
   gqlrequest('https://sai-mainnet.makerfoundation.com/v1', query)
     .then(data => resp.send(data))
 });
-}
+
 app.listen(9001);
-setInterval(intervalFunc, 300000);
