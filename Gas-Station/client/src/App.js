@@ -55,7 +55,8 @@ class App extends Component {
     let cups = (localStorage.getItem('cups') || '').split(',');
     this.setState({'cups': cups});
     cups.map((id) => {
-      fetch(`https://settle.deonsummers.com/cups/${id}`,{
+    if(id != null && id != "" && id) {
+      fetch(`https://settle.deonsummers.com/api/cups/${id}`,{
         method: "GET"
       })
         .then((response) => response.json())
@@ -75,6 +76,7 @@ class App extends Component {
           }
         });
 
+    };
     });
 }
 
