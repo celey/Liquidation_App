@@ -3,6 +3,7 @@ import React from 'react';
 export default class Work extends React.Component {
     constructor(props) {
       super(props);
+      console.log(props);
       this.state = {
 
       };
@@ -12,38 +13,78 @@ export default class Work extends React.Component {
     render() {
       return (
         <div>
-          <table className="table-outer table-work">
+         {this.props.data[this.props.cups[0]] &&  <table className="table-outer table-work">
             <tbody>
-              <tr>
-                <td className="alerts-title">Last block:</td>
-                <td className="table-value">{this.props.data.blockNum}</td>
-              </tr>
-              <tr>
-                <td className="alerts-title">Avg Wait Time (min)</td>
-                <td className="table-value">{this.props.data.avgWait}</td>
-              </tr>
+            <tr>
+              <td className="alerts-title">Track CDP:</td>
+              <td className="table-value">{this.props.data[this.props.cups[0]].cupId}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">CDP ID </td>
+              <td className="alert-value">{this.props.data[this.props.cups[0]].cupId}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Ratio</td>
+              <td className="alerts-value">{this.props.data[this.props.cups[0]].liquidationRatio}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Price </td>
+              <td className="alerts-value">{this.props.data[this.props.cups[0]].liqudationPrice}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Current Price of Eth</td>
+              <td className="alerts-value">{this.props.data[this.props.cups[0]].priceOfEth}</td>
+            </tr>
             </tbody>
-          </table>
-          <table className="table-outer table-work">
+          </table>}
+          {this.props.data[this.props.cups[1]] &&<table className="table-outer table-work">
             <tbody>
-              <tr>
-                <th>Speed</th>
-                <th>Gas Price (gwei)</th>
-              </tr>
-              <tr>
-                <td className="alerts-title">SafeLow (&gt;30m)</td>
-                <td className="table-value">{this.props.data.safeLow}</td>
-              </tr>
-              <tr>
-                <td className="alerts-title">Standard (&gt;5m)</td>
-                <td className="table-value">{this.props.data.standard}</td>
-              </tr>
-              <tr>
-                <td className="alerts-title">Fast (&gt;2m)</td>
-                <td className="table-value">{this.props.data.fast}</td>
-              </tr>
+            <tr>
+              <th>TrackCDP </th>
+              <th>Key Metrics</th>
+            </tr>
+            <tr>
+              <td className="alerts-title">CDP ID</td>
+              <td className="alert-value">{this.props.data[this.props.cups[1]].cupId}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Ratio</td>
+              <td className="alerts-value">{this.props.data[this.props.cups[1]].liquidationRatio}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Price </td>
+              <td className="alerts-value">{this.props.data[this.props.cups[1]].liqudationPrice}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Current Price of Eth</td>
+              <td className="alerts-value">{this.props.data[this.props.cups[1]].priceOfEth}</td>
+            </tr>
             </tbody>
-          </table>
+          </table>}
+          {this.props.data[this.props.cups[2]] &&<table className="table-outer table-work">
+            <tbody>
+            <tr>
+              <th>Track CDP </th>
+              <th>Key Metrics</th>
+            </tr>
+            <tr>
+              <td className="alerts-title">CDP ID </td>
+              <td className="alert-value">{this.props.data[this.props.cups[2]].cupId}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Ratio </td>
+              <td className="alerts-value">{this.props.data[this.props.cups[2]].liquidationRatio}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Liquidation Price </td>
+              <td className="alerts-value">{this.props.data[this.props.cups[2]].liqudationPrice}</td>
+            </tr>
+            <tr>
+              <td className="alerts-title">Current Price of Eth </td>
+              <td className="alerts-value">{this.props.data[this.props.cups[2]].priceOfEth}</td>
+            </tr>
+            </tbody>
+          </table>}
         </div>
       );
     }
