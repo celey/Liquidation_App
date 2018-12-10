@@ -12,7 +12,7 @@ app.get('/api/prices', (req, resp) => {
 });
 
 app.get('/api/cups/:id', async (req, resp) => {
-  const query = `{getCup(id: ${req.params.id}) {ratio}}`
+  const query = `{getCup(id: ${req.params.id}) {ratio pip art ink}}`
 
   gqlrequest('https://sai-mainnet.makerfoundation.com/v1', query)
     .then(data => resp.send(data))
