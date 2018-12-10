@@ -1,22 +1,21 @@
 const app = require('express')();
 const request = require('request');
 const { request: gqlrequest } = require('graphql-request')
+const cors = require('cors');
 
-function intervalFunc() {
-  console.log('Cant stop me now!');
+app.use(cors());
 
-app.get('/prices', (req, resp) => {
+app.get('/api/prices', (req, resp) => {
   request('http://api.oasisdex.com/v1/prices/eth/dai', (err, res, body) => {
     resp.send(body);
   });
 });
 
-app.get('/cups/:id', async (req, resp) => {
-  const query = `{getCup(id: ${req.params.id}) {ratio}}`
+app.get('/api/cups/:id', async (req, resp) => {
+  const query = `{getCup(id: ${req.params.id}) {ratio pip art ink}}`
 
   gqlrequest('https://sai-mainnet.makerfoundation.com/v1', query)
     .then(data => resp.send(data))
 });
-}
+
 app.listen(9001);
-setInterval(intervalFunc, 300000);
